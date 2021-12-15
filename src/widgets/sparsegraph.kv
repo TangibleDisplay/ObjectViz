@@ -1,0 +1,134 @@
+#:import log10 math.log10
+
+<ResultSparseGraph>:
+    values_scale_factors: list(get_scale_factor(root.successes + root.failures + root.errors))
+    default_scale_factors:
+        (
+        max(self.values_scale_factors[0], app.surface_tolerance),
+        max(self.values_scale_factors[1], app.angle_tolerance),
+        )
+    scale_factors: self.default_scale_factors
+
+    success_points: list(autoscale_points(root.successes, self.scale_factors, self.size, self.pos))
+    failure_points: list(autoscale_points(root.failures, self.scale_factors, self.size, self.pos))
+    error_points: list(autoscale_points(root.errors, self.scale_factors, self.size, self.pos))
+
+    vertical_cursor: app.angle_tolerance / self.scale_factors[1] * self.height
+    horizontal_cursor: app.surface_tolerance / self.scale_factors[0] * self.width
+
+    graduation_x: 10 ** (int(log10(app.surface_tolerance)) - 1) * self.width / self.scale_factors[0]
+    graduation_y: 10 ** (int(log10(app.angle_tolerance)) - 1) * self.height / self.scale_factors[1]
+
+    num_graduations: 100
+
+    vertices_bottom:
+        list(chain(*[[
+        self.x + x * 10 * root.graduation_x,
+        self.y,
+        0, 0
+        ] for x in range(self.num_graduations)
+        ]))
+
+    vertices_top:
+        list(chain(*[[
+        self.x + x * 10 * root.graduation_x,
+        self.top,
+        0, 0
+        ] for x in range(self.num_graduations)
+        ]))
+
+    vertices_left:
+        list(chain(*[[
+        self.x,
+        self.y + y * 10 * root.graduation_y,
+        0, 0
+        ] for y in range(self.num_graduations)
+        ]))
+
+    vertices_right:
+        list(chain(*[[
+        self.right,
+        self.y + y * 10 * root.graduation_y,
+        0, 0
+        ] for y in range(self.num_graduations)
+        ]))
+
+    graduation_vertices:
+        self.vertices_bottom + self.vertices_top + self.vertices_left + self.vertices_right
+
+    graduation_indices:
+        list(chain(*[[
+        (a + self.num_graduations * x) for x in range(4)
+        ] for a in range(self.num_graduations)
+        ])) if self.scale_factors else []
+
+    canvas:
+        Color:
+            rgba: 1, 1, 1, .3
+        Mesh:
+            mode: 'lines'
+            vertices: root.graduation_vertices or []
+            indices: root.graduation_indices or []
+
+        Color:
+            rgba: 1, 0, 0, .5
+        Line:
+            points:
+                (
+                self.x,
+                self.y + root.vertical_cursor,
+                self.right,
+                self.y + root.vertical_cursor,
+                ) if self.scale_factors else []
+        Line:
+            points:
+                (
+                self.x + root.horizontal_cursor,
+                self.y,
+                self.x + root.horizontal_cursor,
+                self.top,
+                ) if self.scale_factors else []
+
+        Color:
+            rgba: 1, 0, 0, 1
+        Point:
+            pointsize: 5
+            points: self.error_points or []
+            source: 'data/glow_gray.png'
+
+        Color:
+            rgba: 1, 1, 1, 1
+        Point:
+            pointsize: 5
+            points: self.failure_points or []
+            source: 'data/glow_gray.png'
+
+        Color:
+            rgba: 0, 1, 0, 1
+        Point:
+            pointsize: 5
+            points: self.success_points or []
+            source: 'data/glow_gray.png'
+
+    Slider:
+        x: root.x
+        top: self.height and root.top
+        width: root.width
+        height: '20dp'
+        min: 0
+        max: root.default_scale_factors[0] * 2
+        value: root.default_scale_factors[0]
+        on_value: root.scale_factors[0] = self.value
+
+    Slider:
+        orientation: 'vertical'
+        right: self.size and root.right
+        y: root.y
+        height: root.height
+        width: '20dp'
+        min: 0
+        max: root.default_scale_factors[1] * 2
+        value: root.default_scale_factors[1]
+        on_value: root.scale_factors[1] = self.value
+
+

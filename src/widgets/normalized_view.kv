@@ -1,0 +1,24 @@
+<NormalizedView>:
+    canvas:
+        PushMatrix:
+        Translate:
+            xy: self.center
+        Color:
+            rgba: 1, 0, 0, 2. / app.training_length
+        Point:
+            points: self.r
+            pointsize: 6
+            source: 'data/glow_gray.png'
+        Color:
+            rgba: 0, 1, 0, 2. / app.training_length
+        Point:
+            points: self.g
+            pointsize: 6
+            source: 'data/glow_gray.png'
+        Color:
+            rgba: 0, 0, 1, 2. / app.training_length
+        Point:
+            points: self.b
+            pointsize: 6
+            source: 'data/glow_gray.png'
+        PopMatrix:

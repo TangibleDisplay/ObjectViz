@@ -1,0 +1,5 @@
+__init__.py
+site-packages/Crypto/**
+site-packages/raven/**
+site-packages/pyobjus/**
+python2.7/_*.py

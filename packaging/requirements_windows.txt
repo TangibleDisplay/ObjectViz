@@ -1,0 +1,12 @@
+pycryptodomex
+Cython
+kivy.deps.sdl2
+kivy.deps.glew
+versiontools>=1.9.1
+pip
+raven>=5.18
+wmi==1.4.9
+psutil
+screeninfo
+oscpy
+pywin32

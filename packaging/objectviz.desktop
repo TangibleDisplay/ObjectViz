@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=VTable
+Comment=Start ObjectViz multitouch object detection
+Exec=./VTable
+Icon= data/icon.png
+Type=Application
+Categories=Utility;
+StartupNotify=true
+Keywords=Run;
+Actions=New

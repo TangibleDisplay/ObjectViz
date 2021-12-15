@@ -1,0 +1,610 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-29 01:57-0300\n"
+"PO-Revision-Date: 2018-05-02 22:34+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/application.py:406
+msgid "surface"
+msgstr "距离"
+
+#: src/application.py:407
+msgid "angle"
+msgstr "角度"
+
+#: src/application.py:411
+msgid "{} updated to {}"
+msgstr "{} 已更新至 {}"
+
+#: src/application.py:420
+msgid "retry"
+msgstr "重试"
+
+#: src/application.py:421
+msgid "do nothing"
+msgstr "忽略"
+
+#: src/application.py:425
+msgid "increase"
+msgstr "增加"
+
+#: src/application.py:428
+msgid ""
+"Mesures were often over current {} limit, you can retry\n"
+"                             calibration more slowly{} or do nothing."
+msgstr ""
+"探测出来的值超出了当前设置的{}容差，你可以慢慢转动marker再试一次，{}，或者忽"
+"略它。"
+
+#: src/application.py:432
+msgid ", increase {} to {} (but risk more misdetections)"
+msgstr "或者增加{}容差到{}（同时也会增大误识别率）"
+
+#: src/application.py:2643
+#, python-format
+msgid "Please put the license dongle back to continue (exit in %ss)"
+msgstr "请插入加密狗继续使用 (%ss)"
+
+#: src/settings_tmp.py:1
+msgid "General"
+msgstr "常用配置"
+
+#: src/settings_tmp.py:2
+msgid "language"
+msgstr "语言"
+
+#: src/settings_tmp.py:3
+msgid "language to display the application in"
+msgstr "选择用户界面的语言"
+
+#: src/settings_tmp.py:4
+msgid "auto use"
+msgstr "自动启动"
+
+#: src/settings_tmp.py:5
+msgid "automatically start in 'use' mode"
+msgstr "启动后自动进入“运行”模式"
+
+#: src/settings_tmp.py:6
+msgid "start minimized"
+msgstr "启动后最小化"
+
+#: src/settings_tmp.py:7
+msgid "the app minimizes itself at start"
+msgstr "程序启动后自动最小化"
+
+#: src/settings_tmp.py:8
+msgid "hide window in use mode"
+msgstr "在“运行”模式下隐藏窗口"
+
+#: src/settings_tmp.py:9
+#, python-brace-format
+msgid ""
+"{NAME} hides itself in use mode, so it's possible to keep it at the top, "
+"[color=FF0000FF]please see the full documentation for the use case and "
+"effects of this setting[/color]"
+msgstr ""
+"{NAME} 会在“运行”模式下会自动隐藏，以此保证它是最上层的窗口，请参照《用户手"
+"册》中关于该模式的使用方法和设置后的效果"
+
+#: src/settings_tmp.py:10
+msgid "auto save"
+msgstr "自动保存"
+
+#: src/settings_tmp.py:11
+msgid "automatically save current profile on exit"
+msgstr "在退出时自动保存设置"
+
+#: src/settings_tmp.py:12
+msgid "Confirm exit"
+msgstr "在退出前进行确认"
+
+#: src/settings_tmp.py:13
+msgid "Ask for confirmation before exiting"
+msgstr "在退出前进行确认"
+
+#: src/settings_tmp.py:14
+msgid "screen mode"
+msgstr ""
+
+#: src/settings_tmp.py:15
+msgid ""
+"'primary' will display the window fullscreen on the primary display, 'all' "
+"will extend to cover all the available screens automatically, this assumes "
+"all your displayed are covered by your touch provider, make sure to adjust "
+"'screen width' and 'screen height' values in the 'Detection' section when "
+"using 'all'"
+msgstr ""
+
+#: src/settings_tmp.py:16
+msgid "TUIO"
+msgstr "TUIO设置"
+
+#: src/settings_tmp.py:17
+msgid "send TUIO touch moves"
+msgstr ""
+
+#: src/settings_tmp.py:18
+msgid "verbose tuio send updates about moving touches"
+msgstr ""
+
+#: src/settings_tmp.py:19
+msgid "TUIO events ip"
+msgstr "TUIO事件IP"
+
+#: src/settings_tmp.py:20
+msgid "destination ip to send tuio events to"
+msgstr "定义TUIO事件发送到哪个IP地址"
+
+#: src/settings_tmp.py:21
+msgid "TUIO events port"
+msgstr "TUIO事件端口"
+
+#: src/settings_tmp.py:22
+msgid ""
+"destination port to send tuio events to, you can use multiple values, "
+"separated by commas (e.g: 3337,3338), or express a range, using a minus sign "
+"(e.g 3337-3340), or mix both (e.g: 3337-3350,3389), unparsable values will "
+"be reset to default"
+msgstr ""
+"定义TUIO事件发送到哪个端口，你可以使用符号','来分隔多个端口值（例如"
+"3337,3338）或者用符号'-'设置连续的多个端口（例如3337-3350），如果是无效数值则"
+"自动设置为默认端口3333"
+
+#: src/settings_tmp.py:23
+msgid "TUIO flush interval"
+msgstr "TUIO刷新间隔"
+
+#: src/settings_tmp.py:24
+msgid ""
+"How often to flush the queue of tuio events, (in ms between two flush event)"
+msgstr "多长时间刷新一次TUIO事件队列（两个TUIO事件的间隔，单位为毫秒）"
+
+#: src/settings_tmp.py:25
+msgid "Detection"
+msgstr "采集设置"
+
+#: src/settings_tmp.py:26
+msgid "Screen width"
+msgstr "屏幕宽度"
+
+#: src/settings_tmp.py:27
+msgid "width of the capture screen"
+msgstr "当前屏幕的宽度值（分辨率）"
+
+#: src/settings_tmp.py:28
+msgid "Screen height"
+msgstr "屏幕高度"
+
+#: src/settings_tmp.py:29
+msgid "height of the capture screen"
+msgstr "当前屏幕的高度值（分辨率）"
+
+#: src/settings_tmp.py:30
+msgid "Surface tolerance"
+msgstr "距离容差"
+
+#: src/settings_tmp.py:31
+msgid "surface that is tolerated as a difference from calibration"
+msgstr "允许探测到的距离值和校正时设置的数值的误差范围"
+
+#: src/settings_tmp.py:32
+msgid "Angle tolerance"
+msgstr "角度容差"
+
+#: src/settings_tmp.py:33
+msgid "angle that is tolerated as a difference from calibration"
+msgstr "允许探测到的角度值和校正时设置的数值的误差范围"
+
+#: src/settings_tmp.py:34
+msgid "Number of samples for calibration"
+msgstr "校正时使用的样本数目"
+
+#: src/settings_tmp.py:35
+msgid "number of different values to use for the post-calibration average"
+msgstr "校正过程中计算平均值时需要的样本数目"
+
+#: src/settings_tmp.py:36
+msgid "Display touches"
+msgstr "显示触控点"
+
+#: src/settings_tmp.py:37
+msgid "Display currently detected touches"
+msgstr "显示当前屏幕探测到的触控点"
+
+#: src/settings_tmp.py:38
+msgid "Display candidates matching score"
+msgstr "显示和已有marker的匹配值"
+
+#: src/settings_tmp.py:39
+msgid "Show matching scores for combinations of touches"
+msgstr "显示和已有marker的匹配值"
+
+#: src/settings_tmp.py:40
+msgid "Hide candidates matched objects"
+msgstr "隐藏匹配到的已知marker"
+
+#: src/settings_tmp.py:41
+msgid ""
+"Remove matching scores of matched objects, disable to see why an object was "
+"matched to the set of points"
+msgstr "移除匹配到的marker的匹配分数，关闭它可看到为什么marker和一个点集匹配"
+
+#: src/settings_tmp.py:42
+msgid "undetect object leaving zones"
+msgstr "marker离开生效区域后不检测"
+
+#: src/settings_tmp.py:43
+msgid "when a detected object goes outside of the zones, undetect it"
+msgstr "当一个marker移出生效区域后，不再检测它"
+
+#: src/settings_tmp.py:44
+msgid "Keep missing touches"
+msgstr "保留丢失的触控点"
+
+#: src/settings_tmp.py:45
+msgid "Keep missing touches in center/angle computations"
+msgstr "保留丢失的触控点以计算中心点和角度"
+
+#: src/settings_tmp.py:46
+msgid "Keep angle when object is incomplete"
+msgstr "marker丢失触控点时固定角度"
+
+#: src/settings_tmp.py:47
+msgid ""
+"If the object has lost one or more touches, and is not yet fixed, only "
+"update position, not angle"
+msgstr ""
+"如果一个marker丢失了一个或多个触控点，并且未能修复，则只更新其位置，不更新其"
+"角度"
+
+#: src/settings_tmp.py:48
+msgid "Lost objects timeout"
+msgstr "marker暂时丢失时的保留时间"
+
+#: src/settings_tmp.py:49
+msgid ""
+"Keep lost objects for this number of milli-seconds, allowing the software to "
+"find them again without lost/find events"
+msgstr ""
+"以毫秒来计量的marker丢失后允许软件保留其id的时间，超过该时间则需要重新识别"
+
+#: src/settings_tmp.py:50
+msgid "Number of trials for training"
+msgstr "用于训练识别算法的样本数"
+
+#: src/settings_tmp.py:51
+msgid "The number of tests one have to do for a training"
+msgstr "在训练marker识别算法时需要的测试次数"
+
+#: src/settings_tmp.py:52
+msgid "Base detection interval"
+msgstr "识别marker的最小间隔时间"
+
+#: src/settings_tmp.py:53
+msgid ""
+"Interval betwen detection of object is dynamic, this is the smallest "
+"interval between two detections."
+msgstr "这个间隔是可以动态调整的，这里设置的是两次识别过程的最小间隔。"
+
+#: src/settings_tmp.py:54
+msgid "behavior"
+msgstr "行为"
+
+#: src/settings_tmp.py:55
+msgid "Do angle filtering (experimental)"
+msgstr "进行角度过滤"
+
+#: src/settings_tmp.py:56
+#, python-brace-format
+msgid ""
+"When enabled, {NAME} will try to prevent sudden angle changes, that may come "
+"from misdetection"
+msgstr ""
+
+#: src/settings_tmp.py:57
+msgid "Angle threshold"
+msgstr "角度阈值"
+
+#: src/settings_tmp.py:58
+msgid "ignore sudden rotations bigger than this threshold value"
+msgstr "忽略掉那些旋转角度超过阈值的样本"
+
+#: src/settings_tmp.py:59
+msgid "Retain touch"
+msgstr "保留触控点"
+
+#: src/settings_tmp.py:60
+msgid "Retain time"
+msgstr "保留时间"
+
+#: src/settings_tmp.py:61
+msgid "time to retain the touch for"
+msgstr "保留触控点的时间间隔"
+
+#: src/settings_tmp.py:62
+msgid "Retain distance"
+msgstr "保留距离"
+
+#: src/settings_tmp.py:63
+msgid "max distance to consider new touch is the old one"
+msgstr "判断新的触控点就是刚丢失的上一个触控点的最大距离"
+
+#: src/settings_tmp.py:64
+msgid "Filter touches (experimental)"
+msgstr "过滤触控点"
+
+#: src/settings_tmp.py:65
+msgid "Use touch filter (requires restart)"
+msgstr "使用触控过滤（需要重启软件）"
+
+#: src/settings_tmp.py:66
+msgid "minimum duration of a touch before considering it"
+msgstr "一个触控点多长时间后会被算法"
+
+#: src/settings_tmp.py:67
+msgid ""
+"wait for this time before propagating new touch events, introduce this delay "
+"in all touches"
+msgstr ""
+
+#: src/settings_tmp.py:68
+msgid "maximum speed of a new touch befored discarding it"
+msgstr ""
+
+#: src/settings_tmp.py:69
+msgid ""
+"while a touch being checked for duration, if its speed goes over this limit, "
+"discard it"
+msgstr ""
+
+#: src/application.kv:178
+msgid "Put your device on the calibration zone"
+msgstr "请将marker放置在校正圆圈内"
+
+#: src/application.kv:179
+msgid "Select an id to assign"
+msgstr "选择并分配给marker一个id"
+
+#: src/application.kv:180
+msgid "id configured"
+msgstr "该marker已经设置了id"
+
+#: src/application.kv:181
+msgid "too many devices"
+msgstr "触点太多了"
+
+#: src/application.kv:201
+msgid "object calibration"
+msgstr "marker校正"
+
+#: src/application.kv:206
+msgid "object info"
+msgstr "marker信息"
+
+#: src/application.kv:214
+msgid "zones"
+msgstr "设置识别区"
+
+#: src/application.kv:219
+msgid "load/new"
+msgstr "加载/新建"
+
+#: src/application.kv:225
+msgid "save"
+msgstr "保存"
+
+#: src/application.kv:231
+msgid "use"
+msgstr "开始使用"
+
+#: src/application.kv:236
+msgid "settings"
+msgstr "设置"
+
+#: src/application.kv:560
+msgid "Demo"
+msgstr "演示"
+
+#: src/application.kv:600
+msgid "successes"
+msgstr "成功"
+
+#: src/application.kv:605
+msgid "direct successes"
+msgstr ""
+
+#: src/application.kv:610
+msgid "failures"
+msgstr "失败次数"
+
+#: src/application.kv:615
+msgid "errors"
+msgstr "错误次数"
+
+#: src/application.kv:620
+msgid "average failure surface difference"
+msgstr ""
+
+#: src/application.kv:625
+msgid "average failure angle difference"
+msgstr ""
+
+#: src/application.kv:630
+msgid "average surface difference"
+msgstr ""
+
+#: src/application.kv:635
+msgid "average angle difference"
+msgstr ""
+
+#: src/application.kv:640
+msgid "total samples collected"
+msgstr "收集到的样本总数"
+
+#: src/application.kv:645
+msgid "average samples per candidate"
+msgstr "每个"
+
+#: src/application.kv:650
+msgid "repartition of matches (figure)"
+msgstr ""
+
+#: src/application.kv:653
+msgid "variations of points positions (figure)"
+msgstr ""
+
+#: src/application.kv:799
+msgid "rotate me slowly to complete calibration"
+msgstr "请缓慢转动marker以完成校正"
+
+#: src/application.kv:894
+msgid "Exit?"
+msgstr "退出?"
+
+#: src/application.kv:900
+msgid "config will be saved"
+msgstr "配置将被保存"
+
+#: src/application.kv:900
+msgid "configuration won't be saved"
+msgstr "配置没有被保存"
+
+#: src/application.kv:905
+msgid "Cancel"
+msgstr "取消"
+
+#: src/application.kv:908
+msgid "Ok"
+msgstr "确认"
+
+#: src/application.kv:913
+#, python-format
+msgid "Select a profile to save to: %s"
+msgstr "将该配置另存为: %s"
+
+#: src/application.kv:938 src/application.kv:1223
+msgid "ok"
+msgstr "确定"
+
+#: src/application.kv:944
+msgid "delete"
+msgstr "删除"
+
+#: src/application.kv:949
+msgid "cancel"
+msgstr "取消"
+
+#: src/application.kv:954
+#, python-format
+msgid "Select a profile to load %s"
+msgstr "选择并加载下列某个配置文件: %s"
+
+#: src/application.kv:970
+msgid "forget"
+msgstr "取消id设置"
+
+#: src/application.kv:1029
+msgid "avg"
+msgstr "平均值"
+
+#: src/application.kv:1039
+msgid "len"
+msgstr "长度"
+
+#: src/application.kv:1049
+msgid "min"
+msgstr "最小值"
+
+#: src/application.kv:1058
+msgid "max"
+msgstr "最大值"
+
+#: src/application.kv:1175
+msgid "close"
+msgstr "关闭"
+
+#: src/application.kv:1217
+msgid "Demonstration finished, the program will now exit"
+msgstr "演示结束，程序将推出"
+
+#: src/application.kv:1277
+msgid "Contact us at: "
+msgstr "请与我们联系: "
+
+#: src/application.kv:1284
+msgid "machine identification: "
+msgstr "机器识别码: "
+
+#: src/application.kv:1285
+#, python-brace-format
+msgid "License Ok, you can now run {name}."
+msgstr "序列号可用，现在可以正常启动 {name}."
+
+#: src/application.kv:1354
+msgid "copy to clipboard"
+msgstr "复制到粘贴板"
+
+#: src/application.kv:1357
+msgid "copied!"
+msgstr "复制成功!"
+
+#: src/application.kv:1376
+msgid "start demo"
+msgstr "运行demo"
+
+#: src/application.kv:1392
+msgid "exit"
+msgstr "退出"
+
+#: src/application.kv:1401
+msgid "run"
+msgstr "运行"
+
+#~ msgid "No valid license file has been found."
+#~ msgstr "未能找到有效的授权文件."
+
+#~ msgid "Invalid license file found, bad signature."
+#~ msgstr "签名错误，无效的授权文件."
+
+#~ msgid "Invalid license, wrong software id."
+#~ msgstr "软件id错误，无效的授权文件."
+
+#~ msgid "Invalid license file found, bad id."
+#~ msgstr "软件id损坏，无效的授权文件."
+
+#~ msgid ""
+#~ "V-Table hides itself in use mode, so it's possible to keep it at the top, "
+#~ "[color=FF0000FF]please see the full documentation for the use case and "
+#~ "effects of this setting[/color]"
+#~ msgstr ""
+#~ "V-Tablet会在“运行”模式下会自动隐藏，以此保证它是最上层的窗口，请参照《用户"
+#~ "手册》中关于该模式的使用方法和设置后的效果"
+
+#~ msgid ""
+#~ "When enabled, V-Table will try to prevent sudden angle changes, that may "
+#~ "come from misdetection"
+#~ msgstr "如果启用，V-Table会尽量避免那些误判造成的角度突变"
+
+#~ msgid "License Ok, you can now run V-table."
+#~ msgstr "序列号可用，现在可以正常启动V-Table."
+
+#~ msgid "1:retry"
+#~ msgstr "重试"
+
+#~ msgid "3:do nothing"
+#~ msgstr "增大容差"

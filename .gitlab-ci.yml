@@ -1,0 +1,102 @@
+windows:
+  tags:
+    - docker
+  image:
+    name: tshirtman/kpmwine
+    entrypoint: [""]
+  script:
+    - set WITH_SENTRY_URL="https://0ab5a92a56284f938ee66ba0c309e2c9@sentry.tdl.io//2"
+
+    - export PIP_CONFIG_FILE=/tmp/.pip/pip.conf
+    - export WITH_NAME=V-Table
+    - cp -rv src/data_override/cn_2/* src/data/
+    - rm -rf src/data_override
+    - /entrypoint.sh make -f packaging/Makefile
+    - rename 's/setup.exe/no-contacts-setup.exe/' dist/V-Table*
+    - git clean -dfx src
+
+    - export WITH_CONTACT_MAIL="'fuyonggang@vplus.studio'"
+    - export WITH_CONTACT_PHONE="'156-5078-1618'"
+    - cp -rv src/data_override/cn/* src/data/
+    - rm -rf src/data_override
+    - /entrypoint.sh make -f packaging/Makefile
+    - git clean -dfx src
+
+    - export WITH_NAME=ObjectViz
+    - export WITH_CONTACT_MAIL="'contact@tangibledisplay.com'"
+    - export WITH_CONTACT_PHONE=""
+    - cp -rv src/data_override/no-logo/* src/data/
+    - rm -rf src/data_override
+    - /entrypoint.sh make -f packaging/Makefile Atlas BundleKV Prepare Templates Cythonize Package Installer Restore
+    - rename 's/ObjectViz-setup.exe/no-logo-setup.exe/' dist/*
+    - git clean -dfx src
+
+    - export WITH_NAME=ObjectViz
+    - export WITH_CONTACT_MAIL="'contact@tangibledisplay.com'"
+    - export WITH_CONTACT_PHONE=""
+    - rm -rf src/data_override
+    - /entrypoint.sh make -f packaging/Makefile
+
+    - git clean -dfx src
+    - git checkout src
+    - export WITH_DEBUG=true
+    - rm -rf src/data_override
+    - python packaging/setup.py build_ext --inplace
+    - cp version.txt dist/$WITH_NAME/version.txt
+    - pyinstaller packaging/project.spec --clean -y
+    - wine 'C:\Program Files (x86)\Inno Setup 5\ISCC.exe' packaging/project.iss
+
+  artifacts:
+    paths:
+      - dist/*.exe
+
+.linux:
+  tags:
+    - linux
+  script:
+    # - export WITH_SENTRY_URL=https://256da746f98b40588c6194d7db04e8f5:f25fb8e3e35b419e962ab9f13404768b@sentry.tdl.io//2
+    - make
+    - cd docs
+    - make latexpdf
+    - cd ..
+
+  artifacts:
+    paths:
+      - dist/*.tar.bz2
+      - docs/_build/latex/*.pdf
+
+.osx:
+  tags:
+    - osx
+  script:
+    # - export WITH_SENTRY_URL=https://256da746f98b40588c6194d7db04e8f5:f25fb8e3e35b419e962ab9f13404768b@sentry.tdl.io//2
+    - source ~/dev/kivy/venv2-kivy/bin/activate
+    - make
+  artifacts:
+    paths:
+      - dist/*.dmg
+
+promote:
+  stage: deploy
+  tags:
+    - linux
+
+  dependencies:
+    - windows
+    # - osx
+    # - linux
+
+  when: manual
+
+  script:
+    - cp -r dist $CI_BUILD_ID-$CI_BUILD_REF
+    - cp docs/_build/latex/ObjectViz.pdf $CI_BUILD_ID-$CI_BUILD_REF/
+    - cd $CI_BUILD_ID-$CI_BUILD_REF
+    - mkdir windows osx linux
+    - mv *.exe windows || echo "no windows upload!"
+    # - mv *.dmg osx || echo "no osx upload!"
+    # - mv *.tar.bz2 linux || echo "no linux upload!"
+    - cd ..
+    - scp -r -C $CI_BUILD_ID-$CI_BUILD_REF jenkins@cdn.tdl.io:/var/www/html/ObjectViz-$CI_BUILD_ID-$CI_BUILD_REF
+    - ssh jenkins@cdn.tdl.io rm /var/www/html/dl/ObjectViz
+    - ssh jenkins@cdn.tdl.io ln -sf /var/www/html/ObjectViz-$CI_BUILD_ID-$CI_BUILD_REF /var/www/html/dl/ObjectViz

@@ -1,0 +1,17 @@
+ObjectViz
+Version {version}
+
+Created by the Tangible Display team.
+©2013-{year} Tangible Display and its licensors. All rights reserved.
+The Tangible Display logo is a registered trademark of Tangible Display in France and/or other countries.
+
+www.tangibledisplay.com
+
+-.-- --- ..-
+-.-. .- -.
+--. . -
+.. -
+.. ..-.
+-.-- --- ..-
+.-. . .- .-.. .-.. -.--
+.-- .- -. -

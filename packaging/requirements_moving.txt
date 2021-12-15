@@ -1,0 +1,6 @@
+https://github.com/tshirtman/condiment/archive/master.zip
+Cython
+kivy>=1.10.1
+licensing
+kamidana
+pillow

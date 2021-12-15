@@ -1,0 +1,8 @@
+# bprofile
+Cython
+pyCryptodomex
+raven>=5.18
+https://github.com/kivy/pyobjus/archive/master.zip
+psutil==4.1.0
+screeninfo
+oscpy

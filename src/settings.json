@@ -1,0 +1,274 @@
+[
+  {
+  "type": "tr_title",
+  "tr_title": "General"
+  },
+  {
+      "type": "tr_langs",
+      "tr_title": "language",
+      "tr_desc": "language to display the application in",
+      "section": "general",
+      "key": "lang"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "tr_title": "auto use",
+    "tr_desc": "automatically start in 'use' mode",
+    "section": "general",
+    "key": "auto_use"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "platform": "win",
+    "tr_title": "start minimized",
+    "tr_desc": "the app minimizes itself at start",
+    "section": "general",
+    "key": "minimized_start"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "platform": "win",
+    "tr_title": "hide window in use mode",
+    "tr_desc": "{NAME} hides itself in use mode, so it's possible to keep it at the top, [color=FF0000FF]please see the full documentation for the use case and effects of this setting[/color]",
+    "section": "general",
+    "key": "hidden_use_mode"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "tr_title": "auto save",
+    "tr_desc": "automatically save current profile on exit",
+    "section": "general",
+    "key": "auto_save"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "tr_title": "Confirm exit",
+    "tr_desc": "Ask for confirmation before exiting",
+    "section": "general",
+    "key": "confirm_exit"
+  },
+  {
+    "type": "tr_options",
+    "options": ["primary", "all"],
+    "tr_title": "screen mode",
+    "tr_desc": "'primary' will display the window fullscreen on the primary display, 'all' will extend to cover all the available screens automatically, this assumes all your displayed are covered by your touch provider, make sure to adjust 'screen width' and 'screen height' values in the 'Detection' section when using 'all'",
+    "section": "general",
+    "key": "screen_mode"
+  },
+  {
+  "type": "tr_title",
+  "tr_title": "TUIO"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "platform": "none",
+    "tr_title": "send TUIO touch moves",
+    "tr_desc": "verbose tuio send updates about moving touches",
+    "section": "tuio",
+    "key": "send_tuio_touch_send_touch_move"
+  },
+  {
+    "type": "tr_string",
+    "tr_title": "TUIO events ip",
+    "tr_desc": "destination ip to send tuio events to",
+    "section": "tuio",
+    "key": "send_tuio_ip"
+  },
+  {
+    "type": "tr_string",
+    "tr_title": "TUIO events port",
+    "tr_desc": "destination port to send tuio events to, you can use multiple values, separated by commas (e.g: 3337,3338), or express a range, using a minus sign (e.g 3337-3340), or mix both (e.g: 3337-3350,3389), unparsable values will be reset to default",
+    "section": "tuio",
+    "key": "send_tuio_port"
+  },
+  {
+      "type": "tr_numeric",
+      "tr_title": "TUIO flush interval",
+      "tr_desc": "How often to flush the queue of tuio events, (in ms between two flush event)",
+      "section": "tuio",
+      "key": "tuio_flush_interval"
+  },
+  {
+  "type": "tr_title",
+  "tr_title": "Detection"
+  },
+  {
+    "type": "tr_numeric",
+    "tr_title": "Screen width",
+    "tr_desc": "width of the capture screen",
+    "section": "tuio",
+    "key": "screen_ratio_width"
+  },
+  {
+    "type": "tr_numeric",
+    "tr_title": "Screen height",
+    "tr_desc": "height of the capture screen",
+    "section": "tuio",
+    "key": "screen_ratio_height"
+  },
+  {
+    "type": "tr_numeric",
+    "tr_title": "Surface tolerance",
+    "tr_desc": "surface that is tolerated as a difference from calibration",
+    "section": "detection",
+    "key": "surface_tolerance"
+  },
+  {
+    "type": "tr_numeric",
+    "tr_title": "Angle tolerance",
+    "tr_desc": "angle that is tolerated as a difference from calibration",
+    "section": "detection",
+    "key": "angle_tolerance"
+  },
+  {
+    "type": "tr_numeric",
+    "tr_title": "Number of samples for calibration",
+    "tr_desc": "number of different values to use for the post-calibration average",
+    "section": "detection",
+    "key": "nb_value_average"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "tr_title": "Display touches",
+    "tr_desc": "Display currently detected touches",
+    "section": "detection",
+    "key": "display_touches"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "tr_title": "Display candidates matching score",
+    "tr_desc": "Show matching scores for combinations of touches",
+    "section": "detection",
+    "key": "display_scores"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "tr_title": "Hide candidates matched objects",
+    "tr_desc": "Remove matching scores of matched objects, disable to see why an object was matched to the set of points",
+    "section": "detection",
+    "key": "cleanup_matched_objects"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "tr_title": "undetect object leaving zones",
+    "tr_desc": "when a detected object goes outside of the zones, undetect it",
+    "section": "detection",
+    "key": "undetect_outside_zones"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "tr_title": "Keep missing touches",
+    "tr_desc": "Keep missing touches in center/angle computations",
+    "section": "detection",
+    "key": "keep_missing_touches"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "tr_title": "Keep angle when object is incomplete",
+    "tr_desc": "If the object has lost one or more touches, and is not yet fixed, only update position, not angle",
+    "section": "detection",
+    "key": "keep_angle_on_incomplete_object"
+  },
+  {
+    "type": "tr_numeric",
+    "tr_title": "Lost objects timeout",
+    "tr_desc": "Keep lost objects for this number of milli-seconds, allowing the software to find them again without lost/find events",
+    "section": "detection",
+    "key": "lost_object_timeout"
+  },
+  {
+    "type": "tr_numeric",
+    "tr_title": "Number of trials for training",
+    "dev_only": true,
+    "tr_desc": "The number of tests one have to do for a training",
+    "section": "detection",
+    "key": "training_length"
+  },
+  {
+      "type": "tr_numeric",
+      "tr_title": "Base detection interval",
+      "tr_desc": "Interval betwen detection of object is dynamic, this is the smallest interval between two detections.",
+      "section": "detection",
+      "key": "object_detection_interval"
+  },
+  {
+    "platform": "none",
+    "type": "tr_title",
+    "tr_title": "behavior"
+  },
+  {
+    "type": "tr_bool",
+    "values": ["False", "True"],
+    "platform": "none",
+    "tr_title": "Do angle filtering (experimental)",
+    "tr_desc": "When enabled, {NAME} will try to prevent sudden angle changes, that may come from misdetection",
+    "section": "behavior",
+    "key": "do_angle_filtering"
+  },
+  {
+    "type": "tr_numeric",
+    "platform": "none",
+    "tr_title": "Angle threshold",
+    "tr_desc": "ignore sudden rotations bigger than this threshold value",
+    "section": "behavior",
+    "key": "angle_threshold"
+  },
+  {
+    "type": "tr_title",
+    "tr_title": "Retain touch"
+  },
+  {
+    "type": "tr_numeric",
+    "tr_title": "Retain time",
+    "tr_desc": "time to retain the touch for",
+    "section": "retain touch",
+    "key": "retain_time"
+  },
+  {
+    "type": "tr_numeric",
+    "tr_title": "Retain distance",
+    "tr_desc": "max distance to consider new touch is the old one",
+    "section": "retain touch",
+    "key": "retain_distance"
+  },
+  {
+    "type": "tr_title",
+    "platform": "none",
+    "tr_title": "Filter touches (experimental)"
+  },
+  {
+    "type": "tr_bool",
+    "platform": "none",
+    "tr_title": "Use touch filter (requires restart)",
+    "section": "filter",
+    "key": "do_filter_touches"
+  },
+  {
+    "type": "tr_numeric",
+    "platform": "none",
+    "tr_title": "minimum duration of a touch before considering it",
+    "tr_desc": "wait for this time before propagating new touch events, introduce this delay in all touches",
+    "section": "filter",
+    "key": "min_duration"
+  },
+  {
+    "type": "tr_numeric",
+    "platform": "none",
+    "tr_title": "maximum speed of a new touch befored discarding it",
+    "tr_desc": "while a touch being checked for duration, if its speed goes over this limit, discard it",
+    "section": "filter",
+    "key": "max_speed"
+   }
+]

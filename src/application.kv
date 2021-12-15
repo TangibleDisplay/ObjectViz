@@ -1,0 +1,1151 @@
+#:import cos math.cos
+#:import sin math.sin
+#:import chain itertools.chain
+#:import pi math.pi
+#:import radians math.radians
+#:import CoreImage kivy.core.image.Image
+#:import Animation kivy.animation.Animation
+#:import reduce functools.reduce
+#:import stopTouchApp kivy.base.stopTouchApp
+#:import autoscale_points utils.math.autoscale_points
+#:import get_scale_factor utils.math.get_scale_factor
+#:import printable string.printable
+#:import Clock kivy.clock.Clock
+#:import tr lang.tr
+#:import R kivy.resources.resource_find
+#:import Clipboard kivy.core.clipboard.Clipboard
+
+#:set bgcolor (0/255, 23/255, 33/255, 1)
+#:set white (1, 1, 1, 1)
+#:set light_bgcolor 11/255, 54/255, 71/255, 1
+#:set lighter_bgcolor 134/255, 179/255, 193/255, 1
+#:set border_color 0xCD/255, 0xCD/255, 0xC4/255, 1
+#:set buttons_border 242/255, 242/255, 242/255, 1
+#:set surface_color 0xFC/255, 0xEE/255, 0x21/255, 1
+#:set angle_color 0, 0x71/255, 0xBC/255, 1
+#:set angle_avg_color 0, 1, 1, 1
+#:set surface_avg_color 0, 1, 0, 1
+#:set buttons_border_down 242/255, 242/255, 242/255, .3
+#:set FONT_NAME R('data/font.otf') or R('data/font.ttf')
+
+<Label>:
+    font_name: FONT_NAME
+
+<ScrollView>:
+    scroll_type: ['bars']
+    bar_width: '20dp'
+
+<UILabel@Label>:
+    font_name: FONT_NAME
+
+<ProgressiveLabel>:
+    font_name: FONT_NAME
+
+<Label>:
+    strip: True
+
+<Button>:
+    background_color: bgcolor[:3] + (.25,)
+
+<OVTextInput>:
+    size_hint_y: None
+    height: self.line_height + self.border[0] + self.border[2]
+
+<OVModalView@ModalView,OVPopup>:
+    background_color: bgcolor[:3] + (.5,)
+    title: ''
+    size_hint: .5, .5
+    border: 27, 22, 41, 49
+    background: 'atlas://data/theme/bg_piece'
+    title_size: sp(20)
+    separator_color: 0, 0, 0, 0
+    title_align: 'center'
+    title_font: FONT_NAME
+
+<AutoLabel@UILabel>:
+    border: 10
+    size_hint_y: None
+    height: self.texture_size[1] + self.border
+
+<GridLabel@Label>:
+    size_hint: None, None
+    size: self.texture_size
+    pos_hint: {'right': 1}
+
+<AppToggleButton@ToggleButtonBehavior+AppLabel>:
+    size_factor: self.height / 35
+    canvas.before:
+        BorderImage:
+            source: 'atlas://data/theme/bg_piece'
+            border: 8, 8, 21, 25
+            pos: (self.right - self.vwidth, self.y - 10 * self.size_factor) if self.size_factor else (0, 0)
+            size: (self.vwidth + 20 * self.size_factor, self.height + 10 * self.size_factor) if self.size_factor else (100, 100)
+
+<AppButton@ButtonBehavior+AppLabel+TouchFilter>:
+    size_factor: self.height / 35
+
+    canvas.before:
+        BorderImage:
+            source: 'atlas://data/theme/bg_piece'
+            border: 8, 8, 21, 25
+            pos: (self.right - self.vwidth, self.y - 10 * self.size_factor) if self.size_factor else (0, 0)
+            size: (self.vwidth + 20 * self.size_factor, self.height + 10 * self.size_factor) if self.size_factor else (100, 100)
+
+<AppLabel>:
+    size_factor: self.height / 35
+    size_hint: 350 / 1920, 35 / 1080
+    vwidth: self.width - 30 * self.index * self.size_factor
+    halign: 'right'
+    valign: 'middle'
+    font_size: 25 * self.size_factor
+    text_size: self.width, None
+    font_name: FONT_NAME
+
+
+RootWidget:
+    optimal_width: 1920
+    optimal_height: 1080
+
+    app: app
+    canvas.before:
+        Color:
+            rgba: bgcolor
+
+        Rectangle:
+            size: root.size
+            pos: root.pos
+
+    Image:
+        id: apptitleimage
+        source: 'atlas://data/theme/title_window'
+        size_hint: 420 / 1920, 96 / 1080
+        pos_hint: {'x': 540 / 1920, 'y': 904 / 1080}
+        allow_stretch: True
+
+    Image:
+        size_hint: 72 / 1920, 68 / 1080
+        x: 0
+        top: (root.top - 5) if self.height else 0
+        source: 'atlas://data/theme/bg_piece'
+        allow_stretch: True
+
+        canvas:
+            Color:
+                rgba: lighter_bgcolor
+
+            Line:
+                points: self.center_x, self.center_y - 5, self.center_x + 20, self.center_y + 15
+                width: 2
+
+            Line:
+                points: self.center_x, self.center_y + 15, self.center_x + 20, self.center_y - 5
+                width: 2
+
+        on_touch_down:
+            if self.collide_point(*args[1].pos): app.exit()
+
+    UILabel:
+        id: apptitle
+        text: '%s' % app.profile
+        size_hint: 168 / 1920, 43 / 1080
+        x: (apptitleimage.x + (14 * self.width / 168))
+        top: apptitleimage.top
+        font_size: self.height
+        font_name: FONT_NAME
+
+    UILabel:
+        text: app.title
+        size_hint: 162 / 1920, 32 / 1080
+        x: apptitle.x + 20 * self.width / 162
+        y: apptitle.y - 40 * self.height / 32
+        font_size: self.height
+        font_name: FONT_NAME
+        color: 0xCD/255, 0xCD/255, 0xC4/255
+
+
+    ProgressiveLabel:
+        id: instruction
+        pos_hint: {'center_x': .497, 'y': .045}
+        size_hint: 468 / 1920, 22 / 1080
+        font_size: self.height
+        target_text:
+            {
+            'ready': tr._('Put your device on the calibration zone'),
+            'set': tr._('Select an id to assign'),
+            'done': tr._('id configured'),
+            'error': tr._('too many devices')
+            }[zone.state]
+
+
+    Image:
+        center_x: instruction.center_x * .98
+        y: instruction.y * .87
+        source: 'atlas://data/theme/user_instructions_window'
+        size_hint: self.texture_size[0] / 1920, self.texture_size[1] / 1080
+        allow_stretch: True
+
+    GridLayout:
+        id: menu
+        cols: 1
+        size_hint: 350 / 1920, 275 / 1080
+        pos_hint: {'right': 450 / 1920, 'y': .5 + 50 / 1080}
+        spacing: 5
+
+        AppToggleButton:
+            index: 0
+            text: tr._('object calibration')
+            id: object_calibration
+
+        AppToggleButton:
+            index: 1
+            text: tr._('object info')
+            state: 'down' if app.display_stats else 'normal'
+            on_state:
+                down = (self.state == 'down')
+                app.display_stats = down
+
+        AppButton:
+            index: 2
+            text: tr._('zones')
+            on_release: app.mode = 'zones'
+
+        AppButton:
+            index: 3
+            text: tr._('load/new')
+            on_release:
+                app.load_dialog()
+
+        AppButton:
+            index: 4
+            text: tr._('save')
+            on_release:
+                app.save_dialog()
+
+        AppButton:
+            index: 5
+            text: tr._('use')
+            on_release: app.mode = 'use'
+
+        AppButton:
+            index: 6
+            text: tr._('settings')
+            on_press: app.open_settings()
+
+    Image:
+        id: menu_image
+        source: 'atlas://data/theme/mods_window'
+        allow_stretch: True
+        size_hint: 609 / 1920, 393 / 1080
+        x: menu.x - 15 * self.width / 609
+        pos_hint: {'y': 545 / 1080}
+
+    CalibLayout:
+        on_disabled: Animation(opacity=0 if self.disabled else 1).start(self)
+        disabled: object_calibration.state == 'down'
+        top: menu_image.y if self.size else 0
+        x: menu_image.x
+        id: grid
+        nb: 36
+
+    ScrollView:
+        do_scroll_y: True
+        do_scroll_x: False
+        opacity: graph_background.opacity
+        width: graphzone.width
+        height: graph_background.height - 3
+        right: graph_background.right - 20
+        top: self.height and graph_background.top - 2
+        size_hint: None, None
+        bar_width: 0
+        scroll_type: ['content']
+        GridLayout:
+            cols: 1
+            size_hint_y: None
+            height: self.minimum_height
+            Widget:
+                size_hint_y: None
+                height: 20
+
+            StackLayout:
+                id: graphzone
+                orientation: 'rl-tb'
+                size_hint: None, None
+                size: 458, self.minimum_height
+            Widget:
+    Image:
+        id: graph_background
+        hidden: not app.display_stats
+        on_hidden: Animation(opacity=(0 if self.hidden else 1), d=.5, t='in_circ').start(self)
+        source: 'atlas://data/theme/object_infox%s' % (min(4, max(3, len(graphzone.children))) if not info.down else 3)
+        size_hint: self.texture_size[0] / 1920, self.texture_size[1] / 1080
+        pos_hint: {'x': .5 + 55 / 1920, 'top': 1 - 25 / 1080}
+        allow_stretch: True
+
+    Image:
+        id: credit
+        source: 'atlas://data/theme/credits_window%s' % ('' if info.down else '_notext')
+        size_hint: self.texture_size[0] / 1920, self.texture_size[1] / 1080
+        right: graph_background.right
+        pos_hint: {'y': 110 / 1080}
+        allow_stretch: True
+
+        ScrollView:
+            right: self.parent.right * .99
+            top: self.parent.top * .78 if self.height else 0
+            width: self.parent.width * .7
+            height: self.parent.height * .5 if info.down else 0
+            do_scroll_y: True
+            do_scroll_x: False
+            scroll_type: ['content', 'bars']
+
+            ProgressiveLabel:
+                interval: 0.001
+                target_text: app.get_credits()
+                text_size: self.parent.width, None
+                size_hint_y: None
+                size: self.texture_size
+                font_size: self.parent.height * .09
+                valign: 'top'
+
+    Image:
+        id: info
+        down: False
+        source: 'atlas://data/theme/info'
+        right: credit.right
+        y: credit.y - 25 * self.height / self.texture_size[0]
+        size_hint:
+            (self.texture_size[0] / 1920,
+            self.texture_size[1] / 1080)
+        on_touch_down:
+            if self.collide_point(*args[1].pos): self.down = not self.down
+        allow_stretch: True
+
+    DetectionZone:
+        id: zone
+        size_hint: None, None
+        min_radius: 2 * min(self.parent.size) / 2.7
+        max_radius: 2 * max(root.size)
+        radius: self.min_radius * (1 - self.scale) + self.max_radius * self.scale
+        width: self.radius
+        height: self.radius
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        graphzone: graphzone
+        tint: .13, .73, .66, 1
+
+    UILabel:
+        canvas.before:
+            Color:
+                rgba: bgcolor[:3] + (.9, )
+
+            Ellipse:
+                pos: self.pos
+                size: self.size
+
+        opacity: 1 - zone.scale
+        size_hint: img.texture_size[0] / 1920, img.texture_size[1] / 1080
+        font_size: self.height / 4
+        text: '%s:%s' % (len(zone.touches .keys()), len(zone.free_touches))
+        center_x: zone.center_x + cos(-2.015 * pi / 3) * (zone.width / 2 + 20)
+        center_y: zone.center_y + sin(-2.015 * pi / 3) * (zone.height / 2 + 20)
+        Image:
+            id: img
+            opacity: .8
+            center: self.parent.center
+            size: self.parent.size
+            source: 'atlas://data/theme/nb_points'
+            allow_stretch: True
+
+    Image:
+        source: 'atlas://data/theme/hand'
+        angle: 1.02 * pi / 3
+        x: zone.center_x + zone.width / 1.9 * cos(self.angle)
+        top: zone.center_y - zone.width / 2.1 * sin(self.angle)
+        size_hint: self.texture_size[0] / 1920, self.texture_size[1] / 1080
+        allow_stretch: True
+        on_touch_down:
+            if not self.disabled and self.collide_point(*args[1].pos): args[1].grab(self); self.disabled = True; zone.pos_hint = {}
+        on_touch_move:
+            if args[1].grab_current == self: zone.x += args[1].dx; zone.y += args[1].dy
+        on_touch_up:
+            if args[1].grab_current == self and args[1].is_double_tap: zone.recenter_anim().start(zone)
+            if args[1].grab_current == self: args[1].ungrab(self); self.disabled = False
+
+    CloseButton:
+        top: (root.top - 5) if self.height else 0
+
+    Label:
+        text: '\n'.join(app.log) if app.show_visual_log else ''
+        size: self.texture_size
+        size_hint: None, None
+        center: self.size and root.center
+
+    GridLayout:
+        id: messages
+        cols: 1
+        size: self.minimum_size
+        size_hint: None, None
+        pos_hint: {'center_x': .5, 'y': .2}
+
+<Message>:
+    size_hint: None, None
+    size: dp(500), self.texture_size[1] + dp(50)
+    text_size: self.width, None
+    scale: 1
+    canvas.before:
+        PushMatrix
+        Scale:
+            y: root.scale
+            origin: root.center
+
+        BorderImage:
+            size: self.width + dp(30), self.height
+            pos: self.x - dp(35), self.y - dp(10)
+            border: 21, 8, 40, 25
+            source: 'atlas://data/theme/bg_piece'
+            auto_scale: 'both_lower'
+
+    canvas.after:
+        PopMatrix
+
+<Question>:
+    height: self.texture_size[1] + choices.height + dp(30)
+
+    canvas.before:
+        PushMatrix
+        Translate:
+            y: (self.height - self.texture_size[1] - dp(50)) / 2
+
+    GridLayout:
+        id: choices
+        padding: dp(10)
+        rows: 1
+        size: self.minimum_size
+        y: root.y
+        center_x: self.width and root.center_x
+
+        canvas.before:
+            PopMatrix
+
+<QuestionButton@Button>:
+    size_hint: None, None
+    size:
+        (
+        self.texture_size[0] + self.border[1] + self.border[3],
+        self.texture_size[1] + self.border[0] + self.border[2]
+        )
+
+<DetectionZone>:
+    bg_texture: CoreImage('atlas://data/theme/background_radar').texture
+    tint: [0, 0, 0, 0]
+
+    canvas.before:
+        Color:
+            rgba: light_bgcolor
+
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+        StencilPush
+        Ellipse:
+            pos: self.pos
+            size: self.size
+        StencilUse
+
+        Color:
+            rgba: root.tint[:3] + [root.tint[3] * (1 - root.scale)] if app.root else [0, 0, 0, 0]
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            texture: self.bg_texture
+
+        PushMatrix
+        Rotate:
+            origin: self.center
+            angle: - app.time * 10
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: 'atlas://data/theme/radar'
+        PopMatrix
+
+    canvas.after:
+        StencilUnUse
+        StencilPop
+
+        Color:
+            rgba: 1, 1, 1, 1
+
+        Rectangle:
+            pos: self.x - 20, self.y - 20
+            size: self.width + 40, self.height + 40
+            source: 'atlas://data/theme/graduations'
+
+        PushMatrix
+        Rotate:
+            origin: self.center
+            angle: root.pointer_angle
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'atlas://data/theme/moving_parts'
+        PopMatrix
+
+    Image:
+        id: watermark
+        color: 1, 1, 1, .1
+        source: 'data/logo_watermark.png'
+        size_hint: None, None
+        size: [dp(x) for x in self.texture_size]
+        center: self.size and root.center
+
+<ResultsPopup>:
+    title: 'training results'
+    size_hint: .75, .75
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: content.height > self.height
+            GridLayout:
+                id: content
+                cols: 2
+                size_hint_y: None
+                height: self.minimum_height
+
+                AutoLabel:
+                    text: tr._('successes')
+                AutoLabel:
+                    text: '{}'.format(root.successes)
+
+                AutoLabel:
+                    text: tr._('direct successes')
+                AutoLabel:
+                    text: '{}'.format(root.directs)
+
+                AutoLabel:
+                    text: tr._('failures')
+                AutoLabel:
+                    text: '{}'.format(root.failures)
+
+                AutoLabel:
+                    text: tr._('errors')
+                AutoLabel:
+                    text: '{}'.format(root.errors)
+
+                AutoLabel:
+                    text: tr._('average failure surface difference')
+                AutoLabel:
+                    text: '{}'.format(root.miss_surface_diff)
+
+                AutoLabel:
+                    text: tr._('average failure angle difference')
+                AutoLabel:
+                    text: '{}'.format(root.miss_angle_diff)
+
+                AutoLabel:
+                    text: tr._('average surface difference')
+                AutoLabel:
+                    text: '{}'.format(root.average_surface_diff)
+
+                AutoLabel:
+                    text: tr._('average angle difference')
+                AutoLabel:
+                    text: '{}'.format(root.average_angle_diff)
+
+                AutoLabel:
+                    text: tr._('total samples collected')
+                AutoLabel:
+                    text: '{}'.format(root.samples)
+
+                AutoLabel:
+                    text: tr._('average samples per candidate')
+                AutoLabel:
+                    text: '{}'.format(root.average_samples_per_candidate)
+
+                AutoLabel:
+                    text: tr._('repartition of matches (figure)')
+
+                AutoLabel:
+                    text: tr._('variations of points positions (figure)')
+
+                ResultSparseGraph:
+                    size_hint_y: None
+                    height: 500
+                    successes: root.success_points
+                    failures: root.failure_points
+                    errors: root.error_points
+
+                NormalizedView:
+                    samples: root.normalized_samples
+                    size_hint_y: None
+                    height: 500
+
+        Button:
+            text: 'ok'
+            size_hint_y: None
+            height: '46dp'
+            on_press: root.dismiss()
+
+
+<CalibLayout>:
+    size_hint: 622 / 1920, 400 / 1080
+
+    GridLayout:
+        id: container
+        size_hint: .5, .65
+        cols: 6
+        rows: 6
+        spacing: 10, 10
+        pos_hint: {'x': 235 / 1920, 'y': 175 / 1080}
+
+    Image:
+        id: img
+        source: 'atlas://data/theme/background'
+        pos: root.pos
+        allow_stretch: True
+
+<CalibButton>:
+    state: 'down' if str(self.num) in self.zone.coordinates else 'normal'
+
+    size_hint: 56 / 1920., 48 / 1080.
+
+    Image:
+        id: img
+        center: root.center if self.size else root.center
+        size: root.size if root.state == 'normal' else (root.width * 1.25, root.height * 1.25)
+        source: 'atlas://data/theme/%s' % root.num
+        color: (1, 1, 1, 1) if root.state == 'normal' else (.5, .5, .5, 1)
+        keep_ratio: False
+        allow_stretch: True
+
+<ScoreDisplay>:
+    size_hint: None, None
+    top: self.size and self._top
+    center_x: self.size and self._x
+    size: self.minimum_size
+    cols: 5
+    spacing: 4
+    border: 27, 22, 41, 49 / 2
+
+    canvas.before:
+        Color:
+            rgba: [(float(x) / 10) % 1 for x in self.touches] + [.9]
+        Line:
+            points: root.points
+            close: True
+            width: 2
+        Color:
+            rgba: 1, 1, 1, .5
+        BorderImage:
+            source: 'atlas://data/theme/bg_piece'
+            border: self.border
+            size:
+                (
+                self.width + (self.border[0] + self.border[2]) / 2,
+                self.height + (self.border[1] + self.border[3]) / 2
+                )
+            pos: self.x - self.border[2] * 2 / 3, self.y - self.border[3]  * 2 / 3
+
+        Color:
+            rgba: 1, 1, 1, 1
+
+
+
+<TangibleObject>:
+    size_hint: None, None
+    age: 2 * (app.time - self.birthdate) % pi
+
+    Image:
+        id: labels
+        source: 'atlas://data/theme/object_ID_angle_info'
+        size: self.texture_size
+        center: root.center_x - 5, root.y
+
+    UILabel:
+        text: '%s' % root.oid
+        center_x: (labels.right - 30) if self.size else 0
+        center_y: labels.center_y if self.size else 0
+        size: self.texture_size
+        font_size: '20dp'
+
+    UILabel:
+        text: '%s°' % (int(root.angle) % 360)
+        center_x: (labels.x + 30) if self.size else 0
+        center_y: labels.center_y if self.size else 0
+        size: self.texture_size
+        font_size: '20dp'
+
+    Widget:
+        pos: root.pos
+        size: root.size
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -root.angle
+                origin: root.center_x, root.center_y
+
+        canvas.after:
+            PopMatrix
+
+        Image:
+            center: root.center_x, root.center_y
+            source: 'atlas://data/theme/object_%s_light_hard' % ('recognised' if root.partially_calibrated else 'lost')
+            opacity: sin(root.age) * .5 + .5
+            color: surface_color if root.partially_calibrated else (1, 1, 1, 1)
+            size: self.texture_size[0] / 2, self.texture_size[1] / 2
+
+        Image:
+            center_x: root.center[0]
+            y: root.y + 25
+            size: self.texture_size[0] / 4, self.texture_size[1] / 4
+            source: 'atlas://data/theme/object_%s' % ('recognised' if root.partially_calibrated else 'lost')
+            opacity: .5
+
+    Label:
+        id: lbl
+        center_x: self.width and root.center[0]
+        top: self.height and root.y - 50
+        size: self.texture_size
+        font_name: FONT_NAME
+        text:
+            tr._('rotate me slowly to complete calibration') if (
+            root.partially_calibrated) else ''
+
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1 if root.partially_calibrated else 0
+            BorderImage:
+                size: self.width + dp(30), dp(48)
+                pos: self.x - dp(23), self.center_y - dp(24)
+                border: 8, 8, 21, 25
+                source: 'atlas://data/theme/bg_piece'
+
+<ZoneDefinition>:
+    size_hint: None, None
+    pos: self.sx * app.root.width, self.sy * app.root.height
+    size: self.sw * app.root.width, self.sh * app.root.height
+    locked: app.mode != 'zones' or lock.state == 'down'
+
+    canvas:
+        Color:
+            rgba: 0xCD/255, 0xCD/255, 0xC4/255, .1 if app.mode in ('use', 'zones') else 0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Line:
+            rounded_rectangle: self.x, self.y, self.width, self.height, 4
+        Color:
+            rgba: (0, 0, 0, 0) if self.locked else (1, 1, 1, 1)
+        Rectangle:
+            pos: self.x - root.corner_size - 10, self.top - root.corner_size - 10
+            size: root.corner_size * 2, root.corner_size * 2
+            source: 'atlas://data/theme/resize_up_left'
+        Rectangle:
+            pos: self.x - root.corner_size - 10, self.y - root.corner_size - 10
+            size: root.corner_size * 2, root.corner_size * 2
+            source: 'atlas://data/theme/resize_down_left'
+        Rectangle:
+            pos: self.right - root.corner_size - 10, self.y - root.corner_size - 10
+            size: root.corner_size * 2, root.corner_size * 2
+            source: 'atlas://data/theme/resize_down_right'
+        Rectangle:
+            pos: self.right - root.corner_size - 10, self.top - root.corner_size - 10
+            size: root.corner_size * 2, root.corner_size * 2
+            source: 'atlas://data/theme/resize_up_right'
+
+    Button:
+        center: (root.x + 2 * root.width / 3, root.center_y)
+        disabled: root.locked
+        size: 50, 50
+        canvas:
+            Clear
+            Color:
+                rgba: (0, 0, 0, 0) if root.locked else (1, 1, 1, 1)
+
+            Rectangle:
+                source: 'atlas://data/theme/bg_piece'
+                pos: self.x - 5, self.y - 5
+                size: self.size
+
+            Color:
+                rgba: (0, 0, 0, 0) if root.locked else lighter_bgcolor
+
+            Line:
+                points: self.center_x - 10, self.center_y - 10, self.center_x + 10, self.center_y + 10
+                width: 2
+
+            Line:
+                points: self.center_x - 10, self.center_y + 10, self.center_x + 10, self.center_y - 10
+                width: 2
+
+        on_press: root.destroy()
+
+    ToggleButton:
+        canvas.before:
+            Color:
+                rgba: (0, 0, 0, 0) if app.mode != 'zones' else (1, 1, 1, 1)
+
+            Rectangle:
+                source: 'atlas://data/theme/bg_piece'
+                pos: self.x - 20, self.y - 20
+                size: 70, 70
+
+        id: lock
+        disabled: app.mode != 'zones'
+        opacity: 0 if self.disabled else 1
+        center: root.x + root.width / 3, root.center_y
+        background_normal: 'atlas://data/theme/lock_open'
+        background_down: 'atlas://data/theme/lock_close'
+        border: 0, 0, 0, 0
+        size_hint: None, None
+        height: 40
+        width: 40
+
+
+<ExitDialog>:
+    title: tr._('Exit?')
+    size_hint: .5, .5
+    title_font: FONT_NAME
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: tr._("config will be saved") if app.auto_save else tr._("configuration won't be saved")
+        BoxLayout:
+            size_hint_y: None
+            height: '48dp'
+            Button:
+                text: tr._('Cancel')
+                on_press: root.dismiss()
+            Button:
+                text: tr._('Ok')
+                on_press:
+                    stopTouchApp()
+
+<SaveDialog>:
+    title: tr._('Select a profile to save to: %s') % self.target
+    pos_hint: {'center': (.5, .2)}
+    on_dismiss: ti.focus = False
+
+    BoxLayout:
+        orientation: 'vertical'
+        OVTextInput:
+            id: ti
+            text: root.target
+            on_text: root.target = self.text
+            multiline: False
+            input_filter: lambda s, undo: ''.join(x for x in s if x in printable)
+
+        ScrollView:
+            GridLayout:
+                id: box
+                cols: 1
+                height: self.minimum_height
+                size_hint_y: None
+
+        BoxLayout:
+            size_hint_y: None
+            height: 40
+            Button:
+                text: tr._('ok')
+                on_press:
+                    root.action()
+                    root.dismiss()
+
+            Button:
+                text: tr._('delete')
+                on_press:
+                    root.delete_profile()
+
+            Button:
+                text: tr._('cancel')
+                on_press: root.dismiss()
+
+
+<LoadDialog>:
+    title: tr._('Select a profile to load %s') % self.target
+
+<LoadSaveButton>:
+    text: self.target
+    size_hint_y: None
+    height: 80
+    disabled: self.dialog and self.dialog.target == self.target or not self.dialog
+    on_press: self.dialog.target = self.target
+
+<CalibButtonBubble>:
+    oid: str(self.button .num)
+    center_x: self.button.center_x
+    y: self.button.top
+    GridLayout:
+        cols: 1
+        BubbleButton:
+            text: tr._('forget')
+            on_press:
+                app.root.ids.zone.forget(root.oid)
+                root.parent.remove_widget(root)
+                root.button.state = 'normal'
+        BubbleButton:
+            text: 'test'
+            on_press: app.root.ids.zone.start_training(root.oid)
+            disabled: not app.dev_mode
+            size_hint: (0, 0) if self.disabled else (1, 1)
+            opacity: 0 if self.disabled else 1
+
+
+<TangibleObjectDataGraph>:
+    size_hint: None, None
+    width: 420
+    height: 206 - 20
+
+    lensurfacedata: len(self.target.data_surface) if self.target else 0
+    maxsurfacedata: int(max(self.target.data_surface)) if self.lensurfacedata else 0
+    minsurfacedata: int(min(self.target.data_surface)) if self.lensurfacedata else 0
+    rangesurfacedata: self.maxsurfacedata - self.minsurfacedata
+    avgsurfacedata: int(sum(self.target.data_surface) / float(self.lensurfacedata)) if self.lensurfacedata else 0
+
+    lenangledata: len(self.target.data_display_angle) if self.target else 0
+    maxangledata: int(max(x[1] for x in self.target.data_display_angle)) if self.lenangledata else 0
+    minangledata: int(min(x[1] for x in self.target.data_display_angle)) if self.lenangledata else 0
+    rangeangledata: self.maxangledata - self.minangledata
+    avgangledata: int(sum(x[1] for x in self.target.data_display_angle) / float(self.lenangledata)) if self.lenangledata else 0
+
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: root.pos
+            size: root.width, root.height + 20
+            source: 'atlas://data/theme/info_panel'
+
+    GridLayout:
+        pos: root.pos
+        size: 150, root.height
+        size_hint_x: None
+        cols: 3
+        Widget:
+            size_hint_y: None
+            height: 20
+        Widget:
+            size_hint_y: None
+            height: 20
+        Widget:
+            size_hint_y: None
+            height: 20
+        GLabel:
+            text: tr._('avg')
+        GLabel:
+            color: surface_avg_color
+            text: '%s' % root.avgsurfacedata if root.target else ''
+
+        GLabel:
+            color: angle_avg_color
+            text: '%s' % root.avgangledata if root.target else ''
+
+        GLabel:
+            text: tr._('len')
+        GLabel:
+            color: surface_color
+            text: '%s' % root.lensurfacedata if root.target else ''
+
+        GLabel:
+            color: angle_color
+            text: '%s' % root.lenangledata if root.target else ''
+
+        GLabel:
+            text: tr._('min')
+        GLabel:
+            color: surface_color
+            text: '%s' % root.minsurfacedata if root.target else ''
+        GLabel:
+            color: angle_color
+            text: '%s' % root.minangledata if root.target else ''
+
+        GLabel:
+            text: tr._('max')
+        GLabel:
+            color: surface_color
+            text: '%s' % root.maxsurfacedata if root.target else ''
+        GLabel:
+            color: angle_color
+            text: '%s' % root.maxangledata if root.target else ''
+        Widget:
+            size_hint_y: None
+            height: 20
+
+    Widget:
+        gheight: self.height - 25
+        canvas:
+            Color:
+                rgba: surface_color
+            Line
+                points:
+                    reduce(list.__add__, [
+                    [
+                    self.x + x * float(root.width) / root.lensurfacedata,
+                    self.y + (y - root.minsurfacedata) * float(self.gheight) / max(1, root.rangesurfacedata)
+                    ] for (x, y) in enumerate(root.target.data_surface)]
+                    ) if root.target and root.lensurfacedata else []
+
+            Color:
+                rgba: angle_color
+            Line:
+                points:
+                    reduce(list.__add__, [
+                    [
+                    self.x + x * float(self.width) / root.lenangledata,
+                    self.y + (y[1] - root.minangledata) * float(self.gheight) / max(1, root.rangeangledata)
+                    ] for (x, y) in enumerate(root.target.data_display_angle)]
+                    ) if root.target and root.lenangledata else []
+
+            Color:
+                rgba: surface_avg_color
+            Line:
+                points:
+                    (
+                    self.x,
+                    self.y + (root.avgsurfacedata - root.minsurfacedata) * self.gheight / max(1, root.rangesurfacedata),
+                    self.right,
+                    self.y + (root.avgsurfacedata - root.minsurfacedata) * self.gheight / max(1, root.rangesurfacedata)
+                    ) if root.avgsurfacedata else []
+            Color:
+                rgba: angle_avg_color
+            Line:
+                points:
+                    (
+                    self.x,
+                    self.y + (root.avgangledata - root.minangledata) * self.gheight / max(1, root.rangeangledata),
+                    self.right,
+                    self.y + (root.avgangledata - root.minangledata) * self.gheight / max(1, root.rangeangledata)
+                    ) if root.avgangledata else []
+
+        Image:
+            source: 'atlas://data/theme/bg_piece'
+            size: self.texture_size
+            top: root.top + 3
+            right: root.right
+            opacity: .9
+
+        UILabel:
+            size_hint: None, None
+            font_size: 24
+            text: '%s' % root.target.oid
+            text_size: 40, 40
+            size: self.texture_size
+            right: (root.right - 1) if self.size else (0, 0)
+            top: (root.top - 9) if self.size else (0, 0)
+
+        Image:
+            source: 'atlas://data/theme/bg_piece'
+            size: self.texture_size
+            y: root.y
+            right: root.right
+            opacity: .9
+
+        UILabel:
+            size_hint: None, None
+            zone: app.root.ids.zone
+            value:
+                (int(self.zone.coordinates[root.target.oid].get('surface', '0'))
+                ) if root.target and root.target.oid in self.zone.coordinates else ''
+            text: '%s' % self.value
+            color: surface_color
+            size: self.texture_size
+            right: (root.right - 8) if self.size else (0, 0)
+            y: root.y + 40
+
+        UILabel:
+            size_hint: None, None
+            zone: app.root.ids.zone
+            value:
+                (
+                int(self.zone.coordinates[root.target.oid].get('angle_max', '0'))
+                ) if root.target and root.target.oid in self.zone.coordinates else ''
+            text: '%s' % self.value
+            color: angle_color
+            size: self.texture_size
+            right: (root.right - 8) if self.size else (0, 0)
+            y: root.y + 15
+
+<GLabel@UILabel>:
+
+<-MenuSpinner>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: '50dp'
+    spinner: spinner
+    spinner_text: spinner.text
+    close_button: button
+    Spinner:
+        id: spinner
+    Button:
+        text: tr._('close')
+        id: button
+        size_hint_x: None
+        width: min(dp(200), 0.4*root.width)
+        font_size: '15sp'
+
+
+<CloseButton>:
+    source: 'atlas://data/theme/bg_piece'
+    x: 0
+    size_hint: 72 / 1920, 68 / 1080
+    allow_stretch: True
+    opacity: 0 if self.disabled else 1
+
+    canvas:
+        Color:
+            rgba: lighter_bgcolor
+
+        Line:
+            points: self.center_x, self.center_y - 5, self.center_x + 20, self.center_y + 15
+            width: 2
+
+        Line:
+            points: self.center_x, self.center_y + 15, self.center_x + 20, self.center_y - 5
+            width: 2
+
+<TimeoutAction>:
+    canvas:
+        Color:
+            rgba: lighter_bgcolor
+        Line:
+            ellipse: self.x, self.y, self.width, self.height
+            width: 2
+
+        Ellipse:
+            pos: self.pos
+            size: self.size
+            angle_start: 0
+            angle_end: 360 * self.progress
+
+<ExitPopup@OVPopup>:
+    title: tr._('Demonstration finished, the program will now exit')
+    auto_dismiss: False
+    size_hint: .5, .5
+
+    FloatLayout:
+        Button:
+            text: tr._('ok')
+            size_hint: None, None
+            size: self.texture_size[0] + dp(100), dp(48)
+            on_release: app.stop()
+            pos_hint: {'center_x': .5, 'center_y': .5}
+
+<TouchPoint@Widget>:
+    tid: ''
+    canvas:
+        Point:
+            pointsize: 20
+            source: 'atlas://data/theme/nb_points'
+            points: root.pos
+
+    Label:
+        text: root.tid
+        top: root.y
+        center_x: root.x
+        font_name: FONT_NAME

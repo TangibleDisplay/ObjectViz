@@ -1,0 +1,21 @@
+<LetterboxView>:
+    optimal_width: 100
+    optimal_height: 100
+
+    optimal_width_ratio: self.width / self.optimal_width
+    optimal_height_ratio: self.height / self.optimal_height
+
+    aspect_ratio: float(self.width) / self.height
+    optimal_aspect_ratio: self.optimal_width / self.optimal_height
+
+    size_factor: self.optimal_width_ratio if(self.aspect_ratio < self.optimal_aspect_ratio) else self.optimal_height_ratio
+
+    LetterboxContainer:
+        id: container
+
+<LetterboxContainer@FloatLayout>:
+    pos_hint: {'center_x': .5, 'center_y': .5}
+    size:
+        (self.parent.optimal_width * self.parent.size_factor, self.parent.optimal_height * self.parent.size_factor) \
+        if self.parent and self.parent.size_factor else (100, 100)
+    size_hint: [None, None]

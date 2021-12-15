@@ -1,0 +1,9 @@
+# bprofile
+Cython
+pyCryptodomex
+raven>=5.18
+psutil
+pyinstaller
+sphinx
+screeninfo
+oscpy

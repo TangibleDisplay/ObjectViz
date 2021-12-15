@@ -1,0 +1,565 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-11-29 01:57-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/application.py:406
+msgid "surface"
+msgstr ""
+
+#: src/application.py:407
+msgid "angle"
+msgstr ""
+
+#: src/application.py:411
+msgid "{} updated to {}"
+msgstr ""
+
+#: src/application.py:420
+msgid "retry"
+msgstr ""
+
+#: src/application.py:421
+msgid "do nothing"
+msgstr ""
+
+#: src/application.py:425
+msgid "increase"
+msgstr ""
+
+#: src/application.py:428
+msgid ""
+"Mesures were often over current {} limit, you can retry\n"
+"                             calibration more slowly{} or do nothing."
+msgstr ""
+
+#: src/application.py:432
+msgid ", increase {} to {} (but risk more misdetections)"
+msgstr ""
+
+#: src/application.py:2643
+#, python-format
+msgid "Please put the license dongle back to continue (exit in %ss)"
+msgstr ""
+
+#: src/settings_tmp.py:1
+msgid "General"
+msgstr ""
+
+#: src/settings_tmp.py:2
+msgid "language"
+msgstr ""
+
+#: src/settings_tmp.py:3
+msgid "language to display the application in"
+msgstr ""
+
+#: src/settings_tmp.py:4
+msgid "auto use"
+msgstr ""
+
+#: src/settings_tmp.py:5
+msgid "automatically start in 'use' mode"
+msgstr ""
+
+#: src/settings_tmp.py:6
+msgid "start minimized"
+msgstr ""
+
+#: src/settings_tmp.py:7
+msgid "the app minimizes itself at start"
+msgstr ""
+
+#: src/settings_tmp.py:8
+msgid "hide window in use mode"
+msgstr ""
+
+#: src/settings_tmp.py:9
+#, python-brace-format
+msgid ""
+"{NAME} hides itself in use mode, so it's possible to keep it at the top, "
+"[color=FF0000FF]please see the full documentation for the use case and "
+"effects of this setting[/color]"
+msgstr ""
+
+#: src/settings_tmp.py:10
+msgid "auto save"
+msgstr ""
+
+#: src/settings_tmp.py:11
+msgid "automatically save current profile on exit"
+msgstr ""
+
+#: src/settings_tmp.py:12
+msgid "Confirm exit"
+msgstr ""
+
+#: src/settings_tmp.py:13
+msgid "Ask for confirmation before exiting"
+msgstr ""
+
+#: src/settings_tmp.py:14
+msgid "screen mode"
+msgstr ""
+
+#: src/settings_tmp.py:15
+msgid ""
+"'primary' will display the window fullscreen on the primary display, 'all' "
+"will extend to cover all the available screens automatically, this assumes "
+"all your displayed are covered by your touch provider, make sure to adjust "
+"'screen width' and 'screen height' values in the 'Detection' section when "
+"using 'all'"
+msgstr ""
+
+#: src/settings_tmp.py:16
+msgid "TUIO"
+msgstr ""
+
+#: src/settings_tmp.py:17
+msgid "send TUIO touch moves"
+msgstr ""
+
+#: src/settings_tmp.py:18
+msgid "verbose tuio send updates about moving touches"
+msgstr ""
+
+#: src/settings_tmp.py:19
+msgid "TUIO events ip"
+msgstr ""
+
+#: src/settings_tmp.py:20
+msgid "destination ip to send tuio events to"
+msgstr ""
+
+#: src/settings_tmp.py:21
+msgid "TUIO events port"
+msgstr ""
+
+#: src/settings_tmp.py:22
+msgid ""
+"destination port to send tuio events to, you can use multiple values, "
+"separated by commas (e.g: 3337,3338), or express a range, using a minus sign "
+"(e.g 3337-3340), or mix both (e.g: 3337-3350,3389), unparsable values will "
+"be reset to default"
+msgstr ""
+
+#: src/settings_tmp.py:23
+msgid "TUIO flush interval"
+msgstr ""
+
+#: src/settings_tmp.py:24
+msgid ""
+"How often to flush the queue of tuio events, (in ms between two flush event)"
+msgstr ""
+
+#: src/settings_tmp.py:25
+msgid "Detection"
+msgstr ""
+
+#: src/settings_tmp.py:26
+msgid "Screen width"
+msgstr ""
+
+#: src/settings_tmp.py:27
+msgid "width of the capture screen"
+msgstr ""
+
+#: src/settings_tmp.py:28
+msgid "Screen height"
+msgstr ""
+
+#: src/settings_tmp.py:29
+msgid "height of the capture screen"
+msgstr ""
+
+#: src/settings_tmp.py:30
+msgid "Surface tolerance"
+msgstr ""
+
+#: src/settings_tmp.py:31
+msgid "surface that is tolerated as a difference from calibration"
+msgstr ""
+
+#: src/settings_tmp.py:32
+msgid "Angle tolerance"
+msgstr ""
+
+#: src/settings_tmp.py:33
+msgid "angle that is tolerated as a difference from calibration"
+msgstr ""
+
+#: src/settings_tmp.py:34
+msgid "Number of samples for calibration"
+msgstr ""
+
+#: src/settings_tmp.py:35
+msgid "number of different values to use for the post-calibration average"
+msgstr ""
+
+#: src/settings_tmp.py:36
+msgid "Display touches"
+msgstr ""
+
+#: src/settings_tmp.py:37
+msgid "Display currently detected touches"
+msgstr ""
+
+#: src/settings_tmp.py:38
+msgid "Display candidates matching score"
+msgstr ""
+
+#: src/settings_tmp.py:39
+msgid "Show matching scores for combinations of touches"
+msgstr ""
+
+#: src/settings_tmp.py:40
+msgid "Hide candidates matched objects"
+msgstr ""
+
+#: src/settings_tmp.py:41
+msgid ""
+"Remove matching scores of matched objects, disable to see why an object was "
+"matched to the set of points"
+msgstr ""
+
+#: src/settings_tmp.py:42
+msgid "undetect object leaving zones"
+msgstr ""
+
+#: src/settings_tmp.py:43
+msgid "when a detected object goes outside of the zones, undetect it"
+msgstr ""
+
+#: src/settings_tmp.py:44
+msgid "Keep missing touches"
+msgstr ""
+
+#: src/settings_tmp.py:45
+msgid "Keep missing touches in center/angle computations"
+msgstr ""
+
+#: src/settings_tmp.py:46
+msgid "Keep angle when object is incomplete"
+msgstr ""
+
+#: src/settings_tmp.py:47
+msgid ""
+"If the object has lost one or more touches, and is not yet fixed, only "
+"update position, not angle"
+msgstr ""
+
+#: src/settings_tmp.py:48
+msgid "Lost objects timeout"
+msgstr ""
+
+#: src/settings_tmp.py:49
+msgid ""
+"Keep lost objects for this number of milli-seconds, allowing the software to "
+"find them again without lost/find events"
+msgstr ""
+
+#: src/settings_tmp.py:50
+msgid "Number of trials for training"
+msgstr ""
+
+#: src/settings_tmp.py:51
+msgid "The number of tests one have to do for a training"
+msgstr ""
+
+#: src/settings_tmp.py:52
+msgid "Base detection interval"
+msgstr ""
+
+#: src/settings_tmp.py:53
+msgid ""
+"Interval betwen detection of object is dynamic, this is the smallest "
+"interval between two detections."
+msgstr ""
+
+#: src/settings_tmp.py:54
+msgid "behavior"
+msgstr ""
+
+#: src/settings_tmp.py:55
+msgid "Do angle filtering (experimental)"
+msgstr ""
+
+#: src/settings_tmp.py:56
+#, python-brace-format
+msgid ""
+"When enabled, {NAME} will try to prevent sudden angle changes, that may come "
+"from misdetection"
+msgstr ""
+
+#: src/settings_tmp.py:57
+msgid "Angle threshold"
+msgstr ""
+
+#: src/settings_tmp.py:58
+msgid "ignore sudden rotations bigger than this threshold value"
+msgstr ""
+
+#: src/settings_tmp.py:59
+msgid "Retain touch"
+msgstr ""
+
+#: src/settings_tmp.py:60
+msgid "Retain time"
+msgstr ""
+
+#: src/settings_tmp.py:61
+msgid "time to retain the touch for"
+msgstr ""
+
+#: src/settings_tmp.py:62
+msgid "Retain distance"
+msgstr ""
+
+#: src/settings_tmp.py:63
+msgid "max distance to consider new touch is the old one"
+msgstr ""
+
+#: src/settings_tmp.py:64
+msgid "Filter touches (experimental)"
+msgstr ""
+
+#: src/settings_tmp.py:65
+msgid "Use touch filter (requires restart)"
+msgstr ""
+
+#: src/settings_tmp.py:66
+msgid "minimum duration of a touch before considering it"
+msgstr ""
+
+#: src/settings_tmp.py:67
+msgid ""
+"wait for this time before propagating new touch events, introduce this delay "
+"in all touches"
+msgstr ""
+
+#: src/settings_tmp.py:68
+msgid "maximum speed of a new touch befored discarding it"
+msgstr ""
+
+#: src/settings_tmp.py:69
+msgid ""
+"while a touch being checked for duration, if its speed goes over this limit, "
+"discard it"
+msgstr ""
+
+#: src/application.kv:178
+msgid "Put your device on the calibration zone"
+msgstr ""
+
+#: src/application.kv:179
+msgid "Select an id to assign"
+msgstr ""
+
+#: src/application.kv:180
+msgid "id configured"
+msgstr ""
+
+#: src/application.kv:181
+msgid "too many devices"
+msgstr ""
+
+#: src/application.kv:201
+msgid "object calibration"
+msgstr ""
+
+#: src/application.kv:206
+msgid "object info"
+msgstr ""
+
+#: src/application.kv:214
+msgid "zones"
+msgstr ""
+
+#: src/application.kv:219
+msgid "load/new"
+msgstr ""
+
+#: src/application.kv:225
+msgid "save"
+msgstr ""
+
+#: src/application.kv:231
+msgid "use"
+msgstr ""
+
+#: src/application.kv:236
+msgid "settings"
+msgstr ""
+
+#: src/application.kv:560
+msgid "Demo"
+msgstr ""
+
+#: src/application.kv:600
+msgid "successes"
+msgstr ""
+
+#: src/application.kv:605
+msgid "direct successes"
+msgstr ""
+
+#: src/application.kv:610
+msgid "failures"
+msgstr ""
+
+#: src/application.kv:615
+msgid "errors"
+msgstr ""
+
+#: src/application.kv:620
+msgid "average failure surface difference"
+msgstr ""
+
+#: src/application.kv:625
+msgid "average failure angle difference"
+msgstr ""
+
+#: src/application.kv:630
+msgid "average surface difference"
+msgstr ""
+
+#: src/application.kv:635
+msgid "average angle difference"
+msgstr ""
+
+#: src/application.kv:640
+msgid "total samples collected"
+msgstr ""
+
+#: src/application.kv:645
+msgid "average samples per candidate"
+msgstr ""
+
+#: src/application.kv:650
+msgid "repartition of matches (figure)"
+msgstr ""
+
+#: src/application.kv:653
+msgid "variations of points positions (figure)"
+msgstr ""
+
+#: src/application.kv:799
+msgid "rotate me slowly to complete calibration"
+msgstr ""
+
+#: src/application.kv:894
+msgid "Exit?"
+msgstr ""
+
+#: src/application.kv:900
+msgid "config will be saved"
+msgstr ""
+
+#: src/application.kv:900
+msgid "configuration won't be saved"
+msgstr ""
+
+#: src/application.kv:905
+msgid "Cancel"
+msgstr ""
+
+#: src/application.kv:908
+msgid "Ok"
+msgstr ""
+
+#: src/application.kv:913
+#, python-format
+msgid "Select a profile to save to: %s"
+msgstr ""
+
+#: src/application.kv:938 src/application.kv:1223
+msgid "ok"
+msgstr ""
+
+#: src/application.kv:944
+msgid "delete"
+msgstr ""
+
+#: src/application.kv:949
+msgid "cancel"
+msgstr ""
+
+#: src/application.kv:954
+#, python-format
+msgid "Select a profile to load %s"
+msgstr ""
+
+#: src/application.kv:970
+msgid "forget"
+msgstr ""
+
+#: src/application.kv:1029
+msgid "avg"
+msgstr ""
+
+#: src/application.kv:1039
+msgid "len"
+msgstr ""
+
+#: src/application.kv:1049
+msgid "min"
+msgstr ""
+
+#: src/application.kv:1058
+msgid "max"
+msgstr ""
+
+#: src/application.kv:1175
+msgid "close"
+msgstr ""
+
+#: src/application.kv:1217
+msgid "Demonstration finished, the program will now exit"
+msgstr ""
+
+#: src/application.kv:1277
+msgid "Contact us at: "
+msgstr ""
+
+#: src/application.kv:1284
+msgid "machine identification: "
+msgstr ""
+
+#: src/application.kv:1285
+#, python-brace-format
+msgid "License Ok, you can now run {name}."
+msgstr ""
+
+#: src/application.kv:1354
+msgid "copy to clipboard"
+msgstr ""
+
+#: src/application.kv:1357
+msgid "copied!"
+msgstr ""
+
+#: src/application.kv:1376
+msgid "start demo"
+msgstr ""
+
+#: src/application.kv:1392
+msgid "exit"
+msgstr ""
+
+#: src/application.kv:1401
+msgid "run"
+msgstr ""
