@@ -1,6 +1,6 @@
 import os
 NAME = os.getenv("NAME")
-DEBUG = os.getenv("DEBUG")
+DEBUG = os.getenv("DEBUG", "")
 from os.path import join
 import kivy
 from kivy.utils import platform
