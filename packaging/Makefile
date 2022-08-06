@@ -78,6 +78,7 @@ Package:
 Installer:
 	set NAME=$(NAME)
 	set VERSION=$(git describe --always)
+	echo "AppVersion=$(VERSION)}" > packaging/version.iss
 	$(installer)
 
 Icon:
