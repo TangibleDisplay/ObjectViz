@@ -9,7 +9,7 @@ ifdef ComSpec
 	RMDIR=cmd /C rd /S /Q
 	MV=cmd /C move
 	condiment=python -m condiment
-	installer="%programfiles(x86)%\Inno Setup 6\iscc.exe" packaging/$(NAME).iss
+	installer="$(programfiles\(x86\))\Inno Setup 6\iscc.exe" packaging/$(NAME).iss
 	SEP=$(strip '\\')
 	requirements=packaging$(SEP)requirements_windows.txt
 	SET=$(set)
@@ -38,13 +38,7 @@ else
 	SEP='/'
 endif
 
-ifdef WINEARCH
-	requirements=packaging$(SEP)requirements_windows.txt
-	installer=wine "C:\Program Files (x86)\Inno Setup 6\iscc.Exe" packaging/project.iss
-	SEP=/
-endif
-
-all: Deps BundleKV Prepare Cythonize Package Installer Restore
+all: Deps BundleKV Prepare Cythonize Package Installer
 
 Atlas:
 	$(RM) src/data/theme-*.png
@@ -83,9 +77,6 @@ Package:
 
 Installer:
 	$(installer)
-
-Restore:
-	git checkout .
 
 Icon:
 	$(make_icon)
