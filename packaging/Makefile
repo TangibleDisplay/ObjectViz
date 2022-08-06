@@ -79,7 +79,7 @@ Package:
 	-$(RMDIR) build
 	-$(RMDIR) dist/$(NAME)
 	$(pyinstaller) packaging$(SEP)project.spec -y --clean
-	git describe --tags > dist/$(NAME)$(SEP)version.txt
+	git describe --always > dist/$(NAME)$(SEP)version.txt
 
 Installer:
 	$(installer)
