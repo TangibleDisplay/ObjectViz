@@ -13,7 +13,7 @@ ifdef ComSpec
 	RMDIR=cmd /C rd /S /Q
 	MV=cmd /C move
 	condiment=python -m condiment
-	installer="\Program Files (x86)\Inno Setup 5\ISCC.exe" packaging/$(NAME).iss
+	installer="\Program Files (x86)\Inno Setup 6\iscc.exe" packaging/$(NAME).iss
 	requirements=packaging$(SEP)requirements_windows.txt
 	SET=$(set)
 	python=python
