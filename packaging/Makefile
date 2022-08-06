@@ -40,7 +40,7 @@ endif
 
 ifdef WINEARCH
 	requirements=packaging$(SEP)requirements_windows.txt
-	installer=wine "C:\Program Files (x86)\Inno Setup 5\ISCC.exe" packaging/project.iss
+	installer=wine "C:\Program Files (x86)\Inno Setup 6\iscc.Exe" packaging/project.iss
 	SEP=/
 endif
 
