@@ -67,7 +67,7 @@ Prepare:
 	-$(RM) src$(SEP)_config_patch.py src$(SEP)_main.py src$(SEP)_contact.py
 	-$(RMDIR) src/data/menu src/data/keys src/data/parts src/data/mone/ src/data/icons/logo.svg
 	set VERSION=$(git describe --always)
-        echo $VERSION > version.txt
+	echo $(VERSION) > version.txt
 
 Cythonize:
 	$(python) packaging$(SEP)setup.py build_ext --inplace
