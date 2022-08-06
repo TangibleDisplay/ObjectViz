@@ -6,7 +6,7 @@ import kivy
 from kivy.utils import platform
 
 if platform == 'win':
-    from kivy.deps import sdl2, glew
+    from kivy_deps import sdl2, glew
 else:
     glew = sdl2 = None
 
