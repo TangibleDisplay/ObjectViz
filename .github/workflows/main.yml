@@ -18,6 +18,6 @@ jobs:
           python-version: '3.10'
       - name: build
         run: |
-          export WITH_NAME=ObjectViz
+          set WITH_NAME=ObjectViz
           rm -rf src/data_override
           make -f packaging/Makefile all
