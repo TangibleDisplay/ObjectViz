@@ -2,6 +2,7 @@ pycryptodomex
 Cython
 kivy.deps.sdl2
 kivy.deps.glew
+pyinstaller
 versiontools>=1.9.1
 pip
 raven>=5.18
