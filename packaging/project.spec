@@ -1,6 +1,6 @@
 import os
 NAME = os.getenv("NAME", "ObjectViz")
-DEBUG = os.getenv("DEBUG", False)
+DEBUG = os.getenv("DEBUG", "")
 from os.path import join
 import kivy
 from kivy.utils import platform
@@ -63,10 +63,10 @@ exe = EXE(pyz,
           a.scripts,
           exclude_binaries=True,
           name=NAME,
-          debug=DEBUG,
+          debug=bool(DEBUG),
           strip=None,
           upx=True,
-          console=DEBUG,
+          console=bool(DEBUG),
           icon=join('..', 'src', 'data', 'icons', 'icon.ico'))
 
 with open('packaging/blacklist.txt') as f:
