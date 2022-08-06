@@ -19,5 +19,4 @@ jobs:
       - name: build
         run: |
           set WITH_NAME=ObjectViz
-          rm -rf src/data_override
           make -f packaging/Makefile all
