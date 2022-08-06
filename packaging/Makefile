@@ -76,6 +76,7 @@ Package:
 	git describe --always > dist/$(NAME)$(SEP)version.txt
 
 Installer:
+	set NAME=$(NAME)
 	$(installer)
 
 Icon:
