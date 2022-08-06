@@ -1,4 +1,4 @@
-NAME='ObjectViz'
+NAME=ObjectViz
 
 ifdef WITH_NAME
 	NAME=$(WITH_NAME)
@@ -9,7 +9,7 @@ ifdef ComSpec
 	RMDIR=cmd /C rd /S /Q
 	MV=cmd /C move
 	condiment=python -m condiment
-	installer="\Program Files (x86)\Inno Setup 6\iscc.exe" packaging/$(NAME).iss
+	installer="%programfiles(x86)%\Inno Setup 6\iscc.exe" packaging/$(NAME).iss
 	SEP=$(strip '\\')
 	requirements=packaging$(SEP)requirements_windows.txt
 	SET=$(set)
