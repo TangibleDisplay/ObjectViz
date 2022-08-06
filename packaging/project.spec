@@ -67,7 +67,7 @@ exe = EXE(pyz,
           strip=None,
           upx=True,
           console=DEBUG,
-          icon=join('src', 'data', 'icons', 'icon.ico'))
+          icon=join('..', 'src', 'data', 'icons', 'icon.ico'))
 
 with open('packaging/blacklist.txt') as f:
     excludes = [x.strip() for x in f.readlines()]
