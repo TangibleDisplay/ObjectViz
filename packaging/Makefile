@@ -77,6 +77,7 @@ Package:
 
 Installer:
 	set NAME=$(NAME)
+	set VERSION=$(git describe --always)
 	$(installer)
 
 Icon:

@@ -1,19 +1,19 @@
 [Setup]
-appName={#GetEnv('NAME')}
+appName=ObjectViz
 AppVersion={#GetEnv("VERSION")}
-OutputBaseFilename={#GetEnv("NAME")}{#GetEnv("DEBUG")}-setup
-DefaultDirName={pf}\{#GetEnv("NAME")}
+OutputBaseFilename=ObjectViz-setup
+DefaultDirName={pf}\ObjectViz
 DisableProgramGroupPage=yes
-UninstallDisplayIcon={app}\{#GetEnv("NAME")}.exe
+UninstallDisplayIcon={app}\ObjectViz.exe
 OutputDir=..\dist
 
 [Tasks]
-Name: "autostart"; Description: "Start {#GetEnv("NAME")} on session startup"; Flags: unchecked
+Name: "autostart"; Description: "Start ObjectViz on session startup"; Flags: unchecked
 
 [Files]
-Source: "..\dist\{#GetEnv('NAME')}{#GetEnv('DEBUG')}\*"; DestDir: "{app}"; Flags: recursesubdirs
+Source: "..\dist\ObjectViz\*"; DestDir: "{app}"; Flags: recursesubdirs
 
 [Icons]
-Name: "{commonprograms}\{#GetEnv('NAME')}"; Filename: "{app}\{#GetEnv('NAME')}.exe"
-Name: "{commondesktop}\{#GetEnv('NAME')}"; Filename: "{app}\{#GetEnv('NAME')}.exe"
-Name: "{userstartup}\{#GetEnv('NAME')}"; Filename: "{app}\{#GetEnv('NAME')}.exe"; Tasks: autostart
+Name: "{commonprograms}\ObjectViz"; Filename: "{app}\ObjectViz.exe"
+Name: "{commondesktop}\ObjectViz"; Filename: "{app}\ObjectViz.exe"
+Name: "{userstartup}\ObjectViz"; Filename: "{app}\ObjectViz.exe"; Tasks: autostart
