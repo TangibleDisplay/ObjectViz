@@ -4,10 +4,6 @@ ifdef WITH_NAME
 	NAME=$(WITH_NAME)
 endif
 
-ifdef WITH_DEBUG
-	NAME=$(NAME)-debug
-endif
-
 ifdef ComSpec
 	RM=cmd /C del /F /Q
 	RMDIR=cmd /C rd /S /Q
@@ -30,7 +26,6 @@ else
 	pyinstaller=$(python) -m PyInstaller
 	condiment=$(python) -m condiment
 	requirements=requirements_linux.txt
-	kamidana=kamidana
 	ifeq ($(UNAME_S), Darwin)
 		requirements=requirements_osx.txt
 		installer=packaging/fix_osx_package.sh; hdiutil create dist/$(NAME).dmg -srcfolder dist/$(NAME).app -ov
@@ -45,12 +40,11 @@ endif
 
 ifdef WINEARCH
 	requirements=packaging$(SEP)requirements_windows.txt
-	kamidana=wine kamidana
 	installer=wine "C:\Program Files (x86)\Inno Setup 5\ISCC.exe" packaging/project.iss
 	SEP=/
 endif
 
-all: Deps BundleKV Prepare Templates Cythonize Package Installer Restore
+all: Deps BundleKV Prepare Cythonize Package Installer Restore
 
 Atlas:
 	$(RM) src/data/theme-*.png
@@ -72,12 +66,8 @@ Prepare:
 	$(condiment) src$(SEP)_config_patch.py -o src$(SEP)config_patch.py
 	-$(RM) src$(SEP)_config_patch.py src$(SEP)_main.py src$(SEP)_contact.py
 	-$(RMDIR) src/data/menu src/data/keys src/data/parts src/data/mone/ src/data/icons/logo.svg
-
-Templates:
-	# prepare setup filespr
-	git describe --always > version.txt
-	$(kamidana) --data=packaging/preprocess/$(NAME).json --additionals=packaging/preprocess/helpers.py packaging/preprocess/project.spec | cat > packaging/project.spec
-	$(kamidana) --data=packaging/preprocess/$(NAME).json --additionals=packaging/preprocess/helpers.py packaging/preprocess/project.iss | cat > packaging/project.iss
+	set VERSION=$(git describe --always)
+        echo $VERSION > version.txt
 
 Cythonize:
 	$(python) packaging$(SEP)setup.py build_ext --inplace
