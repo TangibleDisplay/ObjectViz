@@ -1,6 +1,6 @@
 import os
-NAME = os.getenv("NAME")
-DEBUG = os.getenv("DEBUG", "")
+NAME = os.getenv("NAME", "ObjectViz")
+DEBUG = os.getenv("DEBUG", False)
 from os.path import join
 import kivy
 from kivy.utils import platform
@@ -62,7 +62,7 @@ a.binaries = [
 exe = EXE(pyz,
           a.scripts,
           exclude_binaries=True,
-          name=name,
+          name=NAME,
           debug=DEBUG,
           strip=None,
           upx=True,
