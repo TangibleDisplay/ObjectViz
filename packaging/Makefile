@@ -75,7 +75,7 @@ Prepare:
 
 Templates:
 	# prepare setup filespr
-	git describe --tags > version.txt
+	git describe --always > version.txt
 	$(kamidana) --data=packaging/preprocess/$(NAME).json --additionals=packaging/preprocess/helpers.py packaging/preprocess/project.spec | cat > packaging/project.spec
 	$(kamidana) --data=packaging/preprocess/$(NAME).json --additionals=packaging/preprocess/helpers.py packaging/preprocess/project.iss | cat > packaging/project.iss
 
