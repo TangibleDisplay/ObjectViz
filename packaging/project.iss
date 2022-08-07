@@ -1,6 +1,6 @@
 [Setup]
 appName=ObjectViz
-#include version.iss
+#include "version.iss"
 OutputBaseFilename=ObjectViz-setup
 DefaultDirName={pf}\ObjectViz
 DisableProgramGroupPage=yes
